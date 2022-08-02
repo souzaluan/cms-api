@@ -8,4 +8,6 @@ app.use(cors());
 app.use(express.json());
 app.use(routes);
 
-app.listen(3334, () => console.log("RUN!"));
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => console.log("RUN!"));
