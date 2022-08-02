@@ -10,6 +10,7 @@ const createController_2 = require("./modules/content/controllers/createControll
 const listAllController_2 = require("./modules/content/controllers/listAllController");
 const listByCategoryNameController_1 = require("./modules/content/controllers/listByCategoryNameController");
 exports.routes = (0, express_1.Router)();
+exports.routes.get("/", (req, res) => res.send({ message: "ok" }));
 // --- CATEGORY ROUTES ---
 const createCategoryController = new createController_1.CreateController();
 exports.routes.post("/category", createCategoryController.handle);
