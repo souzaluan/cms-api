@@ -13,6 +13,8 @@ import { ListByCategoryNameController as ListContentByCategoryNameController } f
 
 export const routes = Router();
 
+routes.get("/", (req, res) => res.send({ message: "ok" }));
+
 // --- CATEGORY ROUTES ---
 
 const createCategoryController = new CreateCategoryController();
