@@ -10,4 +10,5 @@ const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 app.use(routes_1.routes);
-app.listen(3334, () => console.log("RUN!"));
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log(`Run on ${port}`));
