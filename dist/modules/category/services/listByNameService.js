@@ -6,7 +6,7 @@ class ListByNameService {
         this.repository = repository;
     }
     async execute(query) {
-        return await this.repository.findUnique(query);
+        return await this.repository.findMany(query);
     }
 }
 exports.ListByNameService = ListByNameService;

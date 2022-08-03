@@ -14,8 +14,13 @@ class ListByCategoryNameController {
             const listCategoryByNameService = new listByNameService_1.ListByNameService(prismaCategoryRepository);
             const { name } = req.params;
             name.replaceAll("%20", " ");
-            const category = await listCategoryByNameService.execute({
-                where: { name },
+            const [category] = await listCategoryByNameService.execute({
+                where: {
+                    name: {
+                        equals: name,
+                        mode: "insensitive",
+                    },
+                },
             });
             if (category?.id) {
                 const response = await listByCategoryNameService.execute({
