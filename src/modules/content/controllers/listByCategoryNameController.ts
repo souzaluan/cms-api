@@ -22,8 +22,13 @@ export class ListByCategoryNameController {
       const { name } = req.params;
       name.replaceAll("%20", " ");
 
-      const category = await listCategoryByNameService.execute({
-        where: { name },
+      const [category] = await listCategoryByNameService.execute({
+        where: {
+          name: {
+            equals: name,
+            mode: "insensitive",
+          },
+        },
       });
 
       if (category?.id) {

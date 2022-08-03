@@ -4,7 +4,7 @@ import { Repository } from "../repositories";
 export class ListByNameService {
   constructor(private repository: Repository) {}
 
-  async execute(query: Prisma.ContentCategoryFindUniqueArgs) {
-    return await this.repository.findUnique(query);
+  async execute(query: Prisma.ContentCategoryFindManyArgs) {
+    return await this.repository.findMany(query);
   }
 }

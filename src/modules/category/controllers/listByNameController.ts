@@ -13,7 +13,10 @@ export class ListByNameController {
 
       const response = await listByNameService.execute({
         where: {
-          name,
+          name: {
+            equals: name,
+            mode: "insensitive",
+          },
         },
       });
 
