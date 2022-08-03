@@ -12,7 +12,9 @@ export class ListByNameController {
       const { name } = req.body;
 
       const response = await listByNameService.execute({
-        where: { name },
+        where: {
+          name,
+        },
       });
 
       return res.json(response);

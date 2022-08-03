@@ -10,7 +10,9 @@ class ListByNameController {
             const listByNameService = new listByNameService_1.ListByNameService(prismaRepository);
             const { name } = req.body;
             const response = await listByNameService.execute({
-                where: { name },
+                where: {
+                    name,
+                },
             });
             return res.json(response);
         }
