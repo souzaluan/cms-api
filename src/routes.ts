@@ -10,9 +10,9 @@ import { ListAllController as ListAllCategoryController } from "./modules/catego
 import { CreateController as CreateContentController } from "./modules/content/controllers/createController";
 import { ListAllController as ListAllContentController } from "./modules/content/controllers/listAllController";
 import { ListByCategoryNameController as ListContentByCategoryNameController } from "./modules/content/controllers/listByCategoryNameController";
+import { parser } from "./modules/content/middlewares/imageUpload";
 
 export const routes = Router();
-
 routes.get("/", (req, res) => res.send({ message: "ok" }));
 
 // --- CATEGORY ROUTES ---
@@ -26,10 +26,19 @@ routes.get("/category", listAllCategoryController.handle);
 // --- CONTENT ROUTES ---
 
 const createContentController = new CreateContentController();
-routes.post("/content", createContentController.handle);
+
+routes.post(
+  "/content",
+  parser.single("previewImage"),
+  createContentController.handle
+);
 
 const listAllContentController = new ListAllContentController();
 routes.get("/content", listAllContentController.handle);
 
-const listContentByCategoryName = new ListContentByCategoryNameController();
-routes.get("/content-category/:name", listContentByCategoryName.handle);
+const listContentByCategoryNameController =
+  new ListContentByCategoryNameController();
+routes.get(
+  "/content-category/:name",
+  listContentByCategoryNameController.handle
+);
