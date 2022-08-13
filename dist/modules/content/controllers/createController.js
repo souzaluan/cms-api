@@ -6,13 +6,17 @@ const createService_1 = require("../services/createService");
 class CreateController {
     async handle(req, res) {
         try {
+            if (!req.file)
+                throw new Error("Nenhuma imagem");
             const prismaRepository = new prisma_repository_1.PrismaRepository();
             const createService = new createService_1.CreateService(prismaRepository);
-            const response = await createService.execute({ data: req.body });
+            const response = await createService.execute({
+                data: { ...req.body, previewImage: `/upload/${req.file.filename}` },
+            });
             return res.json(response);
         }
         catch (error) {
-            return res.status(400).json(error);
+            return res.json(error);
         }
     }
 }
